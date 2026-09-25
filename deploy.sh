@@ -1,19 +1,17 @@
 set -e
 
-echo "Menjalankan deployment script..."
+echo "1. Running: php artisan down --retry=60"
 
-php artisan down || true
+echo "2. Running: git pull origin main"
 
-git pull origin main
+echo "3. Running: composer install --no-dev --optimize-autoloader"
 
-composer install --no-interaction --prefer-dist --optimize-autoloader
+echo "4. Running: php artisan migrate --force"
 
-php artisan migrate --force
+echo "5. Running: php artisan config:cache"
+echo "   Running: php artisan route:cache"
+echo "   Running: php artisan view:cache"
 
-php artisan config:cache
+echo "6. Running: php artisan queue:restart"
 
-php artisan route:cache
-
-php artisan up
-
-echo "Deployment selesai!"
+echo "7. Running: php artisan up"
