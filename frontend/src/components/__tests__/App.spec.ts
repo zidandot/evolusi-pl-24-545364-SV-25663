@@ -6,6 +6,6 @@ describe('Unit Test Logika Frontend', () => {
     const endpoint = '/tugas'
     const fullUrl = `${baseUrl}${endpoint}`
 
-    expect(fullUrl).toBe('http://prankkk.com')
+    expect(fullUrl).toBe('http://127.0.0.1:8000/api/tugas')
   })
 })
