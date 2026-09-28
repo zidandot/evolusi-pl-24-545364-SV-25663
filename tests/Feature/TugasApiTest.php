@@ -16,6 +16,6 @@ class TugasApiTest extends TestCase
 
         $response->assertOk()
             ->assertJson([])
-            ->assertHeader('Access-Control-Allow-Origin', '*');
+            ->assertHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
     }
 }
