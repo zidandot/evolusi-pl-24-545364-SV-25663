@@ -17,7 +17,7 @@
                 <li><a href="#" class="hover:text-purple-600 transition">Fitur</a></li>
                 <li><a href="#" class="hover:text-purple-600 transition">Tentang</a></li>
             </ul>
-            <a href="{{ route('posts.index') }}" class="bg-purple-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-purple-700 transition shadow-lg">CRUD</a>
+            <a href="{{ url('/api/tugas') }}" class="bg-purple-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-purple-700 transition shadow-lg">API</a>
         </div>
     </nav>
 

@@ -2,63 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Tugas;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
-        $posts = Post::latest()->get();
-
-        return view('posts.index', compact('posts'));
+        return response()->json(Tugas::latest()->get());
     }
 
-    public function create()
-    {
-        return view('posts.create');
-    }
-
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'status' => 'required|in:draft,published',
+            'judul' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
         ]);
 
-        Post::create($validated);
+        $tugas = Tugas::create($validated);
 
-        return redirect()->route('posts.index')->with('success', 'Data berhasil ditambahkan.');
+        return response()->json($tugas, 201);
     }
 
-    public function show(Post $post)
+    public function show(Tugas $tugas): JsonResponse
     {
-        return view('posts.show', compact('post'));
+        return response()->json($tugas);
     }
 
-    public function edit(Post $post)
-    {
-        return view('posts.edit', compact('post'));
-    }
-
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Tugas $tugas): JsonResponse
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'status' => 'required|in:draft,published',
+            'judul' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
         ]);
 
-        $post->update($validated);
+        $tugas->update($validated);
 
-        return redirect()->route('posts.index')->with('success', 'Data berhasil diperbarui.');
+        return response()->json($tugas->refresh());
     }
 
-    public function destroy(Post $post)
+    public function destroy(Tugas $tugas): Response
     {
-        $post->delete();
+        $tugas->delete();
 
-        return redirect()->route('posts.index')->with('success', 'Data berhasil dihapus.');
+        return response()->noContent();
     }
 }
