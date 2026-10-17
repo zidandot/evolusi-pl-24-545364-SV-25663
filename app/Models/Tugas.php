@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tugas extends Model
 {
-    //
+    protected $fillable = [
+        'judul',
+        'status',
+    ];
 }
