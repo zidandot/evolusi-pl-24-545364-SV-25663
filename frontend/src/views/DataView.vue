@@ -3,7 +3,8 @@ import { ref, onMounted } from "vue";
 
 type Tugas = {
     id: number;
-    nama_tugas: string;
+    judul: string;
+    status: string;
 };
 
 const dataTugas = ref<Tugas[]>([]);
@@ -70,7 +71,7 @@ onMounted(async () => {
                 <span class="task-index">{{
                     (index + 1).toString().padStart(2, "0")
                 }}</span>
-                <span class="task-name">{{ item.nama_tugas }}</span>
+                <span class="task-name">{{ item.judul }}</span>
                 <span class="task-status"><span></span> Tercatat</span>
             </li>
         </ol>
